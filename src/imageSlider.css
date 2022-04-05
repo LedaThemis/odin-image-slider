@@ -1,0 +1,26 @@
+#image-slider {
+  display: flex;
+}
+
+#image-slider-top {
+  display: flex;
+  align-items: center;
+}
+
+#image-container {
+  width: 720px;
+  height: 405px;
+  border: 2px solid #000;
+}
+
+.controls-button {
+  border: none;
+  background-color: transparent;
+
+  cursor: pointer;
+}
+
+.displayed-image {
+  max-width: 100%;
+  max-height: 100%;
+}

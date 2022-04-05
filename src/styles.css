@@ -1,0 +1,9 @@
+body {
+  margin: 0;
+}
+
+#main {
+  display: grid;
+  place-content: center;
+  text-align: center;
+}
