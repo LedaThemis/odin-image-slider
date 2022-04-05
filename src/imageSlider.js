@@ -50,6 +50,17 @@ const imageSlider = () => {
     renderImages(imageList);
   };
 
+  const populateDotsContainer = (count) => {
+    const dotsContainer = document.querySelector('#dots-container');
+    dotsContainer.replaceChildren();
+
+    for (let i = 0; i < count; i++) {
+      const isFilled = i === CURRENT_IMAGE_ID;
+      const dotHTML = getDotHTML(isFilled, i);
+      dotsContainer.appendChild(dotHTML);
+    }
+  };
+
   const renderImages = () => {
     const imageContainer = document.querySelector('#image-container');
     imageContainer.childNodes.forEach((imgElement, i) => {
@@ -70,13 +81,11 @@ const imageSlider = () => {
 
   const renderDots = (count) => {
     const dotsContainer = document.querySelector('#dots-container');
-    dotsContainer.replaceChildren();
 
-    for (let i = 0; i < count; i++) {
-      const isFilled = i === CURRENT_IMAGE_ID;
-      const dotHTML = getDotHTML(isFilled, i);
-      dotsContainer.appendChild(dotHTML);
-    }
+    dotsContainer.childNodes.forEach((dotButton, i) => {
+      const imgElement = dotButton.firstChild;
+      imgElement.src = i === CURRENT_IMAGE_ID ? dotFilled : dot;
+    });
   };
 
   const helpers = (() => {
@@ -137,12 +146,12 @@ const imageSlider = () => {
   })();
 
   populateImageContainer(imageList);
-  renderDots(imageList.length);
+  populateDotsContainer(imageList.length);
 
-  //   setInterval(() => {
-  //     helpers.nextImage();
-  //     renderImages(imageList);
-  //   }, 5000);
+  setInterval(() => {
+    helpers.nextImage();
+    renderImages(imageList);
+  }, 5000);
 };
 
 export default imageSlider;
