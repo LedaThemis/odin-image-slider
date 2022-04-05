@@ -7,3 +7,10 @@ body {
   place-content: center;
   text-align: center;
 }
+
+#credits {
+  position: fixed;
+  bottom: 1rem;
+  width: 100%;
+  text-align: center;
+}
