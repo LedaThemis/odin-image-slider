@@ -1,0 +1,33 @@
+{
+  "name": "odin-image-slider",
+  "version": "1.0.0",
+  "description": "Odin | Image Slider",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --mode production",
+    "watch": "webpack watch --mode development"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LedaThemis/odin-image-slider.git"
+  },
+  "keywords": [
+    "Odin",
+    "the-odin-project",
+    "image-slider"
+  ],
+  "author": "Leda",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/LedaThemis/odin-image-slider/issues"
+  },
+  "homepage": "https://github.com/LedaThemis/odin-image-slider#readme",
+  "dependencies": {
+    "css-loader": "^6.7.1",
+    "style-loader": "^3.3.1",
+    "svg-url-loader": "^7.1.1",
+    "webpack": "^5.71.0",
+    "webpack-cli": "^4.9.2"
+  }
+}
