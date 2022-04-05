@@ -3,6 +3,9 @@ import './imageSlider.css';
 import prevArrow from './icons/arrow_back.svg';
 import nextArrow from './icons/arrow_forward.svg';
 
+import dot from './icons/dot.svg';
+import dotFilled from './icons/dot_filled.svg';
+
 import forest from './images/forest.jpg';
 import lake from './images/lake.jpg';
 import mountain from './images/mountain.jpg';
@@ -18,6 +21,24 @@ const imageSlider = () => {
     img.src = src;
 
     return img;
+  };
+
+  const getDotHTML = (isFilled, id) => {
+    const button = document.createElement('button');
+    button.classList.add('navigation-dots');
+    const img = document.createElement('img');
+    img.classList.add('navigation-icons');
+
+    if (isFilled) {
+      img.src = dotFilled;
+    } else {
+      img.src = dot;
+    }
+
+    button.appendChild(img);
+    button.addEventListener('click', (e) => DOMHandlers.handleDotClick(e, id));
+
+    return button;
   };
 
   const populateImageContainer = (imageList) => {
@@ -43,6 +64,19 @@ const imageSlider = () => {
         imgElement.classList.remove('displayed-image');
       }
     });
+
+    renderDots(imageList.length);
+  };
+
+  const renderDots = (count) => {
+    const dotsContainer = document.querySelector('#dots-container');
+    dotsContainer.replaceChildren();
+
+    for (let i = 0; i < count; i++) {
+      const isFilled = i === CURRENT_IMAGE_ID;
+      const dotHTML = getDotHTML(isFilled, i);
+      dotsContainer.appendChild(dotHTML);
+    }
   };
 
   const helpers = (() => {
@@ -77,9 +111,15 @@ const imageSlider = () => {
       renderImages(imageList);
     };
 
+    const handleDotClick = (e, id) => {
+      CURRENT_IMAGE_ID = id;
+      renderImages(imageList);
+    };
+
     return {
       handleNextButtonClick,
       handlePreviousButtonClick,
+      handleDotClick,
     };
   })();
 
@@ -97,6 +137,7 @@ const imageSlider = () => {
   })();
 
   populateImageContainer(imageList);
+  renderDots(imageList.length);
 
   //   setInterval(() => {
   //     helpers.nextImage();
