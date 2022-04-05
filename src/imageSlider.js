@@ -85,6 +85,11 @@ const imageSlider = () => {
   })();
 
   populateImageContainer(imageList);
+
+  setInterval(() => {
+    helpers.nextImage();
+    renderImages(imageList);
+  }, 5000);
 };
 
 export default imageSlider;
