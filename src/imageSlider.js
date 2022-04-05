@@ -31,28 +31,32 @@ const imageSlider = () => {
     imageContainer.childNodes.forEach((imgElement, i) => {
       if (CURRENT_IMAGE_ID === i) {
         imgElement.style.display = '';
+        imgElement.classList.add('displayed-image');
+        setTimeout(() => {
+          imgElement.classList.remove('displayed-image');
+        }, 10);
       } else {
         imgElement.style.display = 'none';
+        imgElement.classList.remove('displayed-image');
       }
     });
   };
 
   const helpers = (() => {
     const prevImage = () => {
-      if (CURRENT_IMAGE_ID === imageList.length - 1) {
-        CURRENT_IMAGE_ID = 0;
-      } else {
-        CURRENT_IMAGE_ID++;
-      }
-    };
-    const nextImage = () => {
       if (CURRENT_IMAGE_ID === 0) {
         CURRENT_IMAGE_ID = imageList.length - 1;
       } else {
         CURRENT_IMAGE_ID--;
       }
     };
-
+    const nextImage = () => {
+      if (CURRENT_IMAGE_ID === imageList.length - 1) {
+        CURRENT_IMAGE_ID = 0;
+      } else {
+        CURRENT_IMAGE_ID++;
+      }
+    };
     return {
       prevImage,
       nextImage,
@@ -86,10 +90,10 @@ const imageSlider = () => {
 
   populateImageContainer(imageList);
 
-  setInterval(() => {
-    helpers.nextImage();
-    renderImages(imageList);
-  }, 5000);
+  //   setInterval(() => {
+  //     helpers.nextImage();
+  //     renderImages(imageList);
+  //   }, 5000);
 };
 
 export default imageSlider;
