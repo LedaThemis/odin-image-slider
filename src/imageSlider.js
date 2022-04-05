@@ -1,5 +1,8 @@
 import './imageSlider.css';
 
+import prevArrow from './icons/arrow_back.svg';
+import nextArrow from './icons/arrow_forward.svg';
+
 import forest from './images/forest.jpg';
 import lake from './images/lake.jpg';
 import mountain from './images/mountain.jpg';
@@ -81,6 +84,11 @@ const imageSlider = () => {
   })();
 
   const DOM = (() => {
+    const nextButtonImage = document.querySelector('#next-button > img');
+    const previousButtonImage = document.querySelector('#previous-button > img');
+    nextButtonImage.src = nextArrow;
+    previousButtonImage.src = prevArrow;
+
     const nextButton = document.querySelector('#next-button');
     const previousButton = document.querySelector('#previous-button');
 
